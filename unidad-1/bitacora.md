@@ -359,5 +359,34 @@ Video Prueba: https://drive.google.com/file/d/1fDJuUB-uCDNnsQrParwDRGKf3bu7pqXP/
 
 ## Bitácora de reflexión
 **Actividad 8**
----
+
+1. Diferencia entre random() y noise(). ¿Cuándo usar cada uno?
+
+Diferencia: La función random() genera valores independientes; el resultado actual no tiene ninguna relación con el anterior, lo que produce una apariencia caótica y "nerviosa". El Ruido Perlin (noise()), en cambio, genera una secuencia de valores relacionados entre sí; es un azar suave donde los números evolucionan de forma continua.
+
+2. ¿Qué es una distribución de probabilidad? Diferencia visual entre Uniforme y Normal.
+
+Es una regla o función que indica qué tan probable es que ocurra cada uno de los resultados posibles en un evento aleatorio. Es decir, nos dice qué números saldrán con más frecuencia.
+
+En una caminata uniforme, el caminante tiene la misma probabilidad de dar pasos cortos o largos (o de ir en cualquier dirección), lo que hace que explore el espacio de forma equitativa y plana. En una caminata con distribución normal, el caminante tiende a quedarse mucho más cerca de su punto de inicio, ya que los valores cercanos al promedio (cero o pasos pequeños) son muchísimo más frecuentes que los pasos grandes en los extremos.
+
+3. El papel de la aleatoriedad en el arte generativo y sus funciones.
+
+- La aleatoriedad actúa como un colaborador autónomo. Permite que el artista pase de "dibujar" a "programar un sistema" que puede tomar sus propias decisiones.
+- Permite que la obra genere versiones únicas cada vez que se ejecuta, evitando que sea una imagen estática y repetitiva.
+- Ayuda a romper la perfección rígida de las computadoras, introduciendo "imperfecciones" y comportamientos que imitan la vida y la naturaleza.
+
+4. Concepto de aleatoriedad usado en tu obra (Actividad 07).
+
+Concepto: El Ruido Perlin.
+
+Fue la elección adecuada para lograr el movimiento del organismo central. Como el objetivo era que pareciera una entidad viva y "consciente", el ruido Perlin permitió que se desplazara con una suavidad líquida. Si hubiera usado random(), el organismo se sacudiría de forma violenta y artificial; con Perlin, el movimiento tiene una inercia y una dirección que el ojo humano interpreta como algo natural.
+
+5. ¿Qué es una “caminata” (walk) y qué caracteriza al “Lévy flight”?
+
+Caminata aleatoria: Es una simulación donde un objeto se mueve paso a paso, y cada nueva posición se calcula sumando un valor azaroso a la posición anterior. Es básicamente una sucesión de pasos en el tiempo.
+
+Lévy Flight: Se caracteriza por tener una distribución de "cola pesada". Esto significa que el caminante realiza muchos pasos pequeños y agrupados (explorando una zona a fondo) y, de forma repentina y ocasional, da un salto muy largo hacia una nueva zona. Visualmente, parece una mezcla de pequeños garabatos conectados por líneas largas.
+
+
 
