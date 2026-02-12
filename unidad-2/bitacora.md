@@ -427,5 +427,126 @@ Hacer Click: La fuerza se invierte instantáneamente, dispersando la nube de par
 
 **Actividad 10**
 
+Mi obra abandona la idea de un único punto de atracción. En su lugar, he creado tres "especies" de partículas (colores: Cian, Magenta y Amarillo).
+
+La inspiración de Ventrella: 
+
+- Los Amarillos son sociales: se atraen entre ellos.
+- Los Cian son "depredadores": se sienten fuertemente atraídos por los amarillos, pero se repelen entre sí.
+- Los Magenta son caóticos: se alejan de todos los demás pero son atraídos por el mouse.
+
+La inspiración de Tarbell: He utilizado estelas muy finas y variaciones de velocidad para que el dibujo resultante no parezca una simulación física, sino un "diagrama de vida" o un rastro orgánico.
+
+Regla de aceleración: La aceleración de cada partícula es la suma vectorial de los deseos de atracción/repulsión hacia sus vecinos. No hay un camino preprogramado; el movimiento emerge de la interacción social del grupo.
+
+2. El Código de la Aplicación (p5.js)
+```java
+JavaScript
+download
+content_copy
+expand_less
+let particles = [];
+let numParticles = 120;
+
+function setup() {
+  createCanvas(windowWidth, windowHeight);
+  // Crear partículas de 3 tipos distintos
+  for (let i = 0; i < numParticles; i++) {
+    particles.push(new Agent(floor(random(3))));
+  }
+  background(10);
+}
+
+function draw() {
+  // Estelas suaves estilo Tarbell
+  background(10, 15);
+
+  for (let p of particles) {
+    // 1. Calcular interacciones con otros (Lógica de Clusters)
+    for (let other of particles) {
+      if (p !== other) {
+        let force = p5.Vector.sub(other.pos, p.pos);
+        let dist = force.mag();
+
+        if (dist < 150 && dist > 0) {
+          force.normalize();
+          let strength = calculateAttraction(p.type, other.type);
+          force.mult(strength / dist); // La fuerza disminuye con la distancia
+          p.applyForce(force);
+        }
+      }
+    }
+
+    // 2. Interacción con el Mouse (Influencia externa)
+    if (mouseIsPressed) {
+      let mouse = createVector(mouseX, mouseY);
+      let attraction = p5.Vector.sub(mouse, p.pos);
+      attraction.setMag(0.5);
+      p.applyForce(attraction);
+    }
+
+    // 3. Motion 101
+    p.update();
+    p.checkEdges();
+    p.show();
+  }
+}
+
+// Matriz de comportamiento (Jeffrey Ventrella Style)
+function calculateAttraction(myType, otherType) {
+  // Tipo 0: Amarillo, Tipo 1: Cian, Tipo 2: Magenta
+  const matrix = [
+    [0.5, -0.2, 0.1],  // Amarillo se atrae a sí mismo, teme al cian
+    [1.5, -0.5, 0.0],  // Cian caza al amarillo, se repele entre sí
+    [-0.8, -0.8, 0.8]  // Magenta huye de todos, se busca a sí mismo
+  ];
+  return matrix[myType][otherType];
+}
+
+class Agent {
+  constructor(type) {
+    this.type = type;
+    this.pos = createVector(random(width), random(height));
+    this.vel = p5.Vector.random2D();
+    this.acc = createVector(0, 0);
+    this.maxSpeed = 3;
+    this.friction = 0.98; // Rozamiento para un movimiento más orgánico
+    
+    // Colores por especie
+    this.colors = [color(255, 230, 0), color(0, 255, 255), color(255, 0, 255)];
+  }
+
+  applyForce(f) {
+    this.acc.add(f);
+  }
+
+  update() {
+    // Motion 101
+    this.vel.add(this.acc);
+    this.vel.mult(this.friction); // Aplicar fricción
+    this.vel.limit(this.maxSpeed);
+    this.pos.add(this.vel);
+    this.acc.mult(0); // Reset aceleración
+  }
+
+  show() {
+    stroke(this.colors[this.type]);
+    strokeWeight(this.type === 1 ? 4 : 2); // El depredador es más grande
+    point(this.pos.x, this.pos.y);
+  }
+
+  checkEdges() {
+    if (this.pos.x > width) this.pos.x = 0;
+    if (this.pos.x < 0) this.pos.x = width;
+    if (this.pos.y > height) this.pos.y = 0;
+    if (this.pos.y < 0) this.pos.y = height;
+  }
+}
+```
+https://editor.p5js.org/zukoiheree/sketches/N2b-8_ddy
+
+<img width="945" height="806" alt="image" src="https://github.com/user-attachments/assets/e602049d-e001-44bd-ac98-b85f98ba142a" />
+
 ---
+
 
