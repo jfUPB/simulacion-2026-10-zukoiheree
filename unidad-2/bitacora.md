@@ -150,24 +150,47 @@ Son las herramientas de control del movimiento:
 **Actividad 6**
 
 ```java
+let t = 0;
+let step = 0.01;
+
 function setup() {
-    createCanvas(100, 100);
+    createCanvas(400, 400);
 }
 
 function draw() {
-    background(200);
+    background(220);
 
-    let v0 = createVector(50, 50);
-    let v01 = createVector(80, 50); 
-    let v02 = createVector(-30, 30); 
-    let v1 = createVector(30, 0);
-    let v2 = createVector(0, 30);
-    let v3 = p5.Vector.lerp(v1, v2, 0.5);
-    let v4 = createVector(30,30 );
+    // 1. Origen
+    let v0 = createVector(20, 20);
+    
+    // 2. Definimos los vectores base
+    let v1 = createVector(width - 50, 0);   // Rojo
+    let v2 = createVector(0, height - 50);  // Azul
+    
+    // 3. Calculamos la interpolación de movimiento
+    let vLerp = p5.Vector.lerp(v1, v2, t);
+
+    // --- LÓGICA DE COLOR ---
+    let colorRojo = color(255, 0, 0);   // Definimos color rojo
+    let colorAzul = color(0, 0, 255);   // Definimos color azul
+    // lerpColor mezcla los dos colores basándose en t (0.0 a 1.0)
+    let colorDinamico = lerpColor(colorRojo, colorAzul, t);
+
+    // 4. Dibujar vectores
     drawArrow(v0, v1, 'red');
     drawArrow(v0, v2, 'blue');
-    drawArrow(v0, v3, 'purple');
+    
+    // Usamos el color dinámico para la flecha que se mueve
+    drawArrow(v0, vLerp, colorDinamico);
+
+    // Vector verde
+    let v01 = createVector(365, 25); 
+    let v02 = createVector(-345, 350); 
     drawArrow(v01, v02, 'green');
+
+    // Animación de ida y vuelta
+    t += step;
+    if (t > 1 || t < 0) step *= -1;
 }
 
 function drawArrow(base, vec, myColor) {
@@ -178,12 +201,13 @@ function drawArrow(base, vec, myColor) {
     translate(base.x, base.y);
     line(0, 0, vec.x, vec.y);
     rotate(vec.heading());
-    let arrowSize = 7;
+    let arrowSize = 10;
     translate(vec.mag() - arrowSize, 0);
     triangle(0, arrowSize / 2, 0, -arrowSize / 2, arrowSize, 0);
     pop();
 }
 ```
+[[https://editor.p5js.org/](https://editor.p5js.org/zukoiheree/full/qU5oPJijX)](https://editor.p5js.org/zukoiheree/sketches/XTahd1AN6)
 
 ---
 
@@ -216,7 +240,7 @@ En el ejemplo 1.7, el marco de trabajo se aplica siguiendo estos cuatro pasos de
 
 Inicialización (Setup):
 Se crean dos vectores: position (ubicación inicial aleatoria) y velocity (una dirección y magnitud constante, por ejemplo (2.5, 5)).
-```
+```java
 code
 JavaScript
 download
@@ -228,7 +252,7 @@ velocity = createVector(2.5, 5);
 
 Actualización (Update):
 En cada frame, se aplica la regla de oro de Motion 101:
-```
+```java
 code
 JavaScript
 download
@@ -244,7 +268,7 @@ Estás reflejando el vector velocidad respecto al eje de la pared.
 
 Visualización (Display):
 Se dibuja la forma (un círculo) usando las coordenadas del vector posición:
-```
+```java
 code
 JavaScript
 download
@@ -288,6 +312,115 @@ Calcular dirección: dir = p5.Vector.sub(mouse, position);
 
 **Actividad 9**
 
+1. Concepto de la obra:
+La obra presenta un sistema de cientos de "partículas de luz" que habitan un vacío oscuro. El concepto central es la dualidad de la fuerza: la tensión entre la atracción (orden/unión) y la repulsión (caos/dispersión). La obra busca evocar una sensación orgánica, similar a la observación de microorganismos bajo un microscopio o estrellas en una nebulosa, donde el espectador es la entidad que altera el equilibrio del ecosistema con su presencia.
+
+2. Regla de aceleración aplicada:
+Para esta obra, apliqué una regla de Aceleración Proporcional Inversa al Cuadrado con Inversión de Polaridad.
+
+La Regla: La aceleración no es constante ni aleatoria; se calcula restando la posición de la partícula de la posición del mouse (target - position).
+
+Decisión de diseño: Elegí esta regla porque permite un comportamiento "elástico". Si el usuario mantiene el mouse quieto, las partículas orbitan; si lo mueve rápido, genera estelas.
+
+Interacción: Al presionar el mouse, la regla se invierte: la aceleración se vuelve negativa, transformando el imán en un explosivo. Esta exploración artística busca mostrar cómo un cambio mínimo en un vector (un signo negativo) cambia completamente la narrativa visual de "atracción amorosa" a "rechazo violento".
+
+```java
+JavaScript
+download
+content_copy
+expand_less
+let particles = [];
+let mode = 1; // 1: Atracción, -1: Repulsión
+
+function setup() {
+  createCanvas(windowWidth, windowHeight);
+  // Crear 400 partículas en posiciones aleatorias
+  for (let i = 0; i < 400; i++) {
+    particles.push(new Particle());
+  }
+}
+
+function draw() {
+  // Fondo con transparencia para crear estelas (trails)
+  background(0, 25); 
+  
+  // Instrucciones en pantalla
+  fill(255, 100);
+  noStroke();
+  text("MUEVE EL MOUSE para atraer | CLICK para repeler", 20, 30);
+
+  let mousePos = createVector(mouseX, mouseY);
+
+  for (let p of particles) {
+    // 1. CALCULAR ACELERACIÓN (La regla de manipulación)
+    let force = p5.Vector.sub(mousePos, p.pos);
+    let distance = force.mag();
+    distance = constrain(distance, 5, 100); // Evitar fuerzas infinitas
+    
+    force.normalize();
+    
+    // Si presionas el mouse, mode se vuelve -1 (Repulsión)
+    let strength = (mouseIsPressed) ? -2 : 1;
+    force.mult(strength * 0.5); 
+
+    // 2. APLICAR MOTION 101
+    p.applyForce(force);
+    p.update();
+    p.checkEdges();
+    p.show();
+  }
+}
+
+class Particle {
+  constructor() {
+    this.pos = createVector(random(width), random(height));
+    this.vel = p5.Vector.random2D();
+    this.acc = createVector(0, 0);
+    this.maxSpeed = 5;
+    this.color = color(random(100, 255), random(100, 255), 255);
+  }
+
+  applyForce(f) {
+    this.acc.add(f); // La aceleración acumula las fuerzas
+  }
+
+  update() {
+    // REGLA MOTION 101:
+    // Aceleración cambia Velocidad -> Velocidad cambia Posición
+    this.vel.add(this.acc);
+    this.vel.limit(this.maxSpeed); // Limitar para que no escape al infinito
+    this.pos.add(this.vel);
+    
+    // Limpiar aceleración en cada frame
+    this.acc.mult(0);
+  }
+
+  show() {
+    stroke(this.color);
+    // El grosor depende de la velocidad (visualización de la energía)
+    strokeWeight(this.vel.mag() * 1.5);
+    point(this.pos.x, this.pos.y);
+  }
+
+  checkEdges() {
+    if (this.pos.x > width) this.pos.x = 0;
+    if (this.pos.x < 0) this.pos.x = width;
+    if (this.pos.y > height) this.pos.y = 0;
+    if (this.pos.y < 0) this.pos.y = height;
+  }
+}
+```
+<img width="921" height="812" alt="image" src="https://github.com/user-attachments/assets/6a86335b-2b48-42a0-a487-e2d2cc9a7875" />
+
+
+https://editor.p5js.org/zukoiheree/sketches/kNIwYG053
+
+Instrucciones de uso:
+
+Mover el mouse: Las partículas se sienten atraídas hacia el cursor como polillas a una luz, pero debido a su inercia (Motion 101), no se quedan quietas, sino que orbitan y crean patrones fluidos.
+
+Hacer Click: La fuerza se invierte instantáneamente, dispersando la nube de partículas en una explosión geométrica.
+
 ---
 
 ## Bitácora de reflexión
@@ -295,3 +428,4 @@ Calcular dirección: dir = p5.Vector.sub(mouse, position);
 **Actividad 10**
 
 ---
+
