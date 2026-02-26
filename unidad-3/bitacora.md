@@ -71,3 +71,28 @@ https://editor.p5js.org/zukoiheree/sketches/f2T_gD3w3
 ## Bitácora de reflexión
 
 **Actividad 05**
+
+**1.** 
+
+**Motion 101** es el algoritmo fundamental para simular física mediante una reacción en cadena de vectores:
+
+- **Fuerza ($F$):** Es el origen del movimiento (viento, gravedad, etc.). Según Newton, genera **Aceleración** dividida por la masa ($A = F/m$).
+- **Aceleración ($A$):** Es el cambio instantáneo de la velocidad. En cada frame, se suma a la **Velocidad** y luego se resetea a cero.
+- **Velocidad ($V$):** Es la "memoria" del movimiento. Acumula los cambios de la aceleración y se suma a la **Posición**.
+- **Posición ($P$):** Es el resultado final visible (las coordenadas $x, y$).
+
+**El ciclo lógico en cada frame:**
+- $\text{Fuerzas} \rightarrow \text{Aceleración}$ (acumula empujes).
+-  $\text{Aceleración} + \text{Velocidad}$ (cambia el ritmo).
+-  $\text{Velocidad} + \text{Posición}$ (mueve el objeto).
+-  $\text{Aceleración} \times 0$ (limpia el rastro para el siguiente frame).
+
+**2.**
+
+Obra Seleccionada: "Móviles de Techo"
+
+<img width="920" height="382" alt="image" src="https://github.com/user-attachments/assets/9745cac5-89cd-4a52-997f-700f3ea111d0" />
+
+https://editor.p5js.org/zukoiheree/sketches/7E4R5_lIe
+
+
