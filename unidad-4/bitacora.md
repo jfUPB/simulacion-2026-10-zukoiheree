@@ -97,10 +97,59 @@ Dragging (Arrastrar):
 - En mouseReleased(): this.dragging = false.
 - En update(): si dragging es cierto, iguala this.position a la del mouse.
 
+**Actividad 5**
+
+¿Qué ocurre?
+
+- Error de referencia: El programa dejará de funcionar y mostrará un error en la consola (ReferenceError: x is not defined). Esto sucede porque eliminaste las líneas donde se definían let x y let y, pero intentas usarlas en la función line(0, 0, x, y).
+
+- El círculo se "pega" al centro: Si corrigieras el error de la línea y usaras v.x y v.y, verías que el círculo se queda casi inmóvil en el centro (0,0), moviéndose apenas un píxel.
+
+**Actividad 6**
+
+La función sinusoide es la herramienta matemática clave para crear **movimientos oscilatorios y orgánicos**. Aquí el resumen de lo aprendido:
+
+1.  **Oscilación Suave:** A diferencia de la aleatoriedad, el seno (`sin()`) produce un vaivén predecible y fluido entre **-1 y 1**.
+   
+2.  **Parámetros Críticos:**
+    *   **Amplitud:** Controla el "tamaño" del movimiento (qué tan lejos llega del centro).
+    *   **Periodo:** Es el "ancho" de la onda (cuánto tarda en completar un ciclo).
+    *   **Frecuencia:** Cuántos ciclos ocurren en un espacio/tiempo determinado.
+    *   **Fase:** Es el desplazamiento horizontal. Cambiar la fase en el tiempo es lo que hace que la onda "camine" o se desplace.
+      
+3.  **La "Fórmula":**
+    *   y = amplitud * sin(ángulo + fase);
+      
+4.  **Uso Práctico:** Se utiliza para simular resortes, ondas de agua, el vaivén de un péndulo o incluso para hacer que un color o tamaño cambie de forma pulsante y natural.
+
+**Actividad 8**
+
+<img width="632" height="235" alt="image" src="https://github.com/user-attachments/assets/919abe65-813e-424f-9764-951d8fd7d0a0" />
+
+https://editor.p5js.org/zukoiheree/sketches/FPriITP4Z
+
+**Actividad 9**
+
+<img width="648" height="272" alt="image" src="https://github.com/user-attachments/assets/ee5f6a71-0b56-44d2-811c-ab2a5ea3f62d" />
+
+https://editor.p5js.org/zukoiheree/sketches/FZTwMYoL_
+
+
+**Actividad 10**
+
+<img width="641" height="344" alt="image" src="https://github.com/user-attachments/assets/0c7d3f77-b29c-48ef-8093-ff2ac2b3845d" />
+
+https://editor.p5js.org/zukoiheree/sketches/zqcpG-ifh
 
 
 ## Bitácora de aplicación 
 
+<img width="918" height="790" alt="image" src="https://github.com/user-attachments/assets/5686c1f2-8127-4e63-b108-11ef9b049124" />
+
+https://editor.p5js.org/zukoiheree/sketches/JA87qSTK0
 
 
 ## Bitácora de reflexión
+
+<img width="8192" height="1550" alt="Motion 101 Acceleration-2026-03-12-180206" src="https://github.com/user-attachments/assets/3b366da4-f49d-4794-9dec-d273790df9bd" />
+
