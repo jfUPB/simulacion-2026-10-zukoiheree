@@ -99,6 +99,53 @@ Capas: Se modificó la capa de identidad del objeto (variedad de clases), pero l
 
 **Actividad 5**
 
+![152060](https://github.com/user-attachments/assets/68ae0ff0-56b8-4409-b24d-d049ce473d6d)
+
+Frases:
+
+"La belleza no es un estado estático, sino un tránsito entre la gravedad que nos siembra y el viento que nos dispersa".
+
+"En la muerte de cada flor, el algoritmo no halla un final, sino la instrucción necesaria para un nuevo comienzo".
+
+---
+**Explicación de Decisiones de Diseño**
+
+1. La Semilla
+
+Emisión: Nace de la interacción directa clic o de la muerte de una flor previa. Representa el potencial inicial y la herencia biológica.
+
+Fuerzas: Solo le afecta la gravedad. La decisión busca comunicar "peso" y "destino": la semilla debe caer obligatoriamente para encontrar su propósito en la tierra.
+
+Condición de Muerte: No muere por tiempo, sino por contacto. Al tocar el suelo, su "muerte" es técnica: se elimina para liberar los recursos necesarios para que nazca la flor.
+
+2. La Flor
+
+Visualización: Un tallo vertical que crece y un circulo de color. Es el único elemento anclado y estático, diseñado para ser el pilar visual y el motor del sistema.
+
+Emisión de Pétalos: Es una emisión pulsante y rítmica. Simula la exuberancia de la vida en su punto máximo; la flor "regala" partículas al entorno mientras tiene energía.
+
+Condición de Muerte: Es el elemento con más lifespan. Su muerte activa la regla de supervivencia, disparando nuevas semillas antes de ser borrada de la memoria.
+
+3. El Pétalo
+
+Fuerzas: Ignora la gravedad y responde al Ruido Perlin + Fuerza de Ascenso. La decisión de diseño es crear un "revoloteo" errático que rompa la rigidez matemática y evoque ligereza y libertad.
+
+Visualización: Orientada por su propio vector de velocidad (heading).
+
+Condición de Muerte: Desvanecimiento por transparencia (alpha).
+
+4. Interacción del Usuario
+
+Significado: El usuario actúa como el "Jardinero - Sembrador"
+
+El Clic: Es el acto de creación divina o siembra; el inicio del sistema.
+
+El Movimiento: No es solo estético; al mover el mouse, el usuario altera el vector del viento. Esto significa que el usuario puede elegir entre un jardín en calma o una tormenta que disperse los pétalos violentamente, afectando la estética final de la composición.
+
+5. Gestión de Memoria (splice + loop inverso)
+
+Decisión técnica: Es el "filtro de entropía". En este sistema de crecimiento infinito, el borrado constante es lo que permite que la obra sea eterna. Sin la limpieza de los entes muertos, la vida (el proceso) se detendría por el colapso del hardware.
+
 <img width="941" height="669" alt="image" src="https://github.com/user-attachments/assets/96000b2e-bd6b-4b52-8c0b-fa4067fa767b" />
 
 https://editor.p5js.org/zukoiheree/sketches/2OQsVWh-q
@@ -128,3 +175,25 @@ Parte 1
 9. Fuerzas globales y locales: Responden a leyes generales (gravedad) o influencias puntuales (imanes).
 
 10. Independencia visual: El cálculo físico es el mismo, sin importar si la partícula se ve como un punto o una imagen.
+
+Parte 2
+
+1. Lo que se mantiene igual (El Algoritmo)
+
+- La lógica física: El uso de vectores (P,V,A) y las leyes de Newton (F=ma).
+
+- El comportamiento: La regla de que una semilla "muere" para crear una flor, y la flor crea pétalos.
+
+- El ruido: El uso de Ruido Perlin para simular el viento orgánico.
+
+2. Lo que cambiaría (La Técnica)
+
+- Gestión de objetos: En lugar de arreglos y splice(), usarías Object Pooling (reutilizar objetos) o Sistemas de Partículas por GPU para manejar miles de pétalos sin lag.
+
+- Dimensión: Pasarías de coordenadas a un entorno X,Y,Z con luces y materiales 3D realistas.
+
+3. Partes independientes de la herramienta (El Diseño)
+
+- La Narrativa: La idea de "vida, muerte y renacimiento" a través de fuerzas naturales.
+
+- Las Reglas del Mundo: El equilibrio exacto entre la gravedad que tira y el viento que eleva. Eso es diseño algorítmico puro, transportable a cualquier lenguaje.
