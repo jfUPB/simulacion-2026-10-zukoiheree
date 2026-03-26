@@ -106,3 +106,25 @@ https://editor.p5js.org/zukoiheree/sketches/2OQsVWh-q
 ## Bitácora de reflexión
 
 **Actividad 6**
+
+Parte 1
+
+1. Entidad con estado: Cada partícula guarda su propia información (posición, velocidad, aceleración).
+
+2. Ciclo de vida: Tienen un tiempo de existencia limitado (nacen, envejecen y mueren).
+
+3. Colecciones dinámicas: El sistema gestiona listas que crecen y se encogen constantemente.
+
+4. Importancia del borrado: Eliminar partículas muertas es vital para que la memoria no colapse.
+
+5. Separación de lógica: La partícula decide cómo moverse; el sistema decide cuántas hay.
+
+6. Abstracción del emisor: El origen es un objeto independiente que podemos mover o rotar.
+
+7. Sistemas de sistemas: Se pueden crear jerarquías (un grupo de emisores gestionando grupos de partículas).
+
+8. Heterogeneidad: Gracias a la herencia, diferentes tipos de partículas pueden convivir en un mismo sistema.
+
+9. Fuerzas globales y locales: Responden a leyes generales (gravedad) o influencias puntuales (imanes).
+
+10. Independencia visual: El cálculo físico es el mismo, sin importar si la partícula se ve como un punto o una imagen.
