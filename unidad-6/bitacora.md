@@ -120,6 +120,70 @@ Si tuviera que diseñar los visuales para distintos tipos de canciones, esta ser
 
 **Actividad 6**
 
+### Concepto visual
+La palabra Hooligan es conocida por representar lo salvaje, violento, gamberro y agresivo. Los agentes comienzan como un flujo inerte y sumiso de "polvo" blanco. Al activarse la canción, este orden es atacado por una "sangre" agresiva y salvaje.
+
+### Relación con el tema musical
+La estructura de "Hooligan" gobierna los estados de la materia:
+*   **Bombo/Bass:** Define la dirección del viento global. El sistema entero "oscila" horizontalmente con el pulso rítmico.
+*   **Snares/Claps/Gritos:** Son picos de energía que quiebran la percepción, invirtiendo los colores del lienzo (Flashes).
+*   **Vocales:** Actúan como el "alimento" que permite que los agentes de polvo se transformen en filamentos de sangre (Physarum).
+
+
+### 5. Reactividad al audio
+Implementada mediante `p5.FFT` con análisis de tres bandas críticas:
+*   **Bass (20-100Hz):** Inversión del vector de viento.
+*   **Mid-Range (400-1200Hz):** Umbral de transformación para el estado "BLOOD".
+*   **Mid-High/Treble (2000-5000Hz):** Gatillo para los flashes de inversión cromática.
+
+### Interacción performativa
+El mouse se convierte en un **Imán de Infección**. 
+*   **Click sostenido:** Aplica una **Steering Force** (fuerza de dirección) masiva que succiona a todos los agentes rojos hacia el cursor.
+*   **Release (Soltar):** Cancela la atracción y aplica un impulso de velocidad instantáneo, generando una dispersión explosiva.
+
+### Interacción con sentido musical
+
+- Click sostenido (Atracción): Es el gesto de "tensión acumulada". El usuario concentra la agresión roja en un solo punto, creando una masa densa, oscura y vibrante que parece estar a punto de estallar.
+- Release (Dispersión): Es el acto violento. Al soltar el mouse, la masa concentrada explota hacia afuera en todas direcciones, dejando rastros filosos de sangre que se desvanecen volviendo a ser polvo blanco.
+
+### Moodboard o referencias
+*   **Sage Jenson:** Lógica de sensores químicos y crecimiento de filamentos orgánicos.
+*   **Video de Vidrios Verdes:** Movimiento de esquirlas y fragmentación rápida.
+*   **Microscopía Electrónica:** Visualización de bacterias y flujos biológicos.
+*   **Paleta:** #000 (Vulnerabilidad), #FFF (Flash/Alerta), #FF0000 (Vida/Violencia).
+
+### Bocetos
+*   **Boceto Inicial:** Una neblina blanca que viaja de izquierda a derecha.
+*   **Boceto de Interacción:** Un remolino rojo concentrándose bajo el puntero del mouse mientras el fondo parpadea.
+*   **Boceto de Final:** Dispersión total de hilos rojos que se desvanecen volviendo a ser puntos blancos.
+
+### Mapa de decisiones
+*   **4000 Agentes:** Necesarios para que la masa concentrada por el mouse se sienta densa y pesada.
+*   **Steering Limitado:** El `maxForce` de atracción es mayor que el del viento para que el usuario siempre tenga la "última palabra" sobre la dirección de la sangre.
+*   **Buffer TrailMap:** Se usa para que los hilos de sangre tengan memoria visual (estela) sin ensuciar la posición de las partículas de polvo.
+
+### Mapa de interpretación
+*   **Bajo suena:** El humo cambia de lado (Auto).
+*   **Voz suena:** Aparecen manchas rojas (Auto).
+*   **Clap suena:** La pantalla parpadea (Auto).
+*   **Mantener Click:** Concentrar la sangre en el mouse (User).
+*   **Soltar Click:** Explotar la sangre hacia afuera (User).
+
+### Uso explícito de IA como materializador
+*   **Materialización Técnica:** La IA codificó los sensores de proximidad química para que los filamentos se busquen entre sí.
+*   **Lógica de Interacción:** Se implementó la transición de estados DUST -> BLOOD y la fuerza de atracción/explosión bajo demanda del usuario.
+*   **Autoría Conceptual:** El usuario definió que la pieza debe representar lo salvaje y violento de la palabra Hooligan, utilizando la sangre como símbolo de agresividad dentro de la canción. La IA actuó como la herramienta que tradujo esos sentimientos en vectores y píxeles.
+
+
+**FINAL**
+<img width="851" height="814" alt="image" src="https://github.com/user-attachments/assets/2cf7c7f2-376f-48f2-9df5-ace4dcda6f06" />
+https://editor.p5js.org/zukoiheree/sketches/5xpGCKzMI
+
+**Como queria que fueran las manchas**
+<img width="841" height="815" alt="image" src="https://github.com/user-attachments/assets/d1c3d993-0202-4490-8270-2bfc25afe5e6" />
+
+https://editor.p5js.org/zukoiheree/sketches/otMqt-otu
+
 
 
 
