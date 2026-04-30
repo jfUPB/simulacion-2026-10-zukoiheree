@@ -5,7 +5,11 @@
 
 ## Bitácora de aplicación 
 
-https://editor.p5js.org/zukoiheree/sketches/fycatQjJd
+Palabra: MERRY GO ROUND
+
+Porque la vida da muchas vueltas
+
+https://editor.p5js.org/zukoiheree/sketches/wF41jbkrv
 
 
 ## Bitácora de reflexión
