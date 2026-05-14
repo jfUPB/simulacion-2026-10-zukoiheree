@@ -42,18 +42,12 @@ https://drive.google.com/drive/folders/1QxrrBv48txxK2hlL_W-ZQ8zLUBNUA19v?usp=dri
         add (Bajos) y HF multiply (Agudos) que multiplican la fuerza de la
         extrusión.
 
-
 6. Moodboard o referencias
  <img width="1080" height="1020" alt="Diseño sin título" src="https://github.com/user-attachments/assets/11a2a629-b02f-4355-9473-e0d7e9763011" />
 Cancion: https://www.youtube.com/watch?v=touqKmxN9n4
 
 8. Pantalla completa o presentación limpia 
 <img width="1861" height="950" alt="image" src="https://github.com/user-attachments/assets/2cc0edb3-23d7-49e7-82d9-b4a9e1fcdd46" />
-
-
-9. Bocetos
-
-
 
 10. Mapa de decisiones (Extraído de los Nodos)
 
@@ -77,6 +71,3 @@ Cancion: https://www.youtube.com/watch?v=touqKmxN9n4
   - Uso técnico: Se utilizó la IA para analizar la jerarquía de los nodos en la
     captura de pantalla y explicar cómo se conectan con los principios de
     movimiento angular y fuerzas de la unidad.
-
-
-## Bitácora de reflexión
